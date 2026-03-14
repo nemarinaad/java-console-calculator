@@ -3,36 +3,47 @@ import java.util.Scanner;
 
 void main()
 {
-    Scanner scan = new Scanner(System.in);
+    String continueCalculation;
+    do
+    {
+        Scanner scan = new Scanner(System.in);
 
-    System.out.println("Enter first number: ");
-    double first = scan.nextDouble();
+        System.out.print("Enter first number: ");
+        double first = scan.nextDouble();
 
-    System.out.println("Enter operator (+ - * /): ");
-    char operator = scan.nextLine().charAt(0);
+        char operator;
+        do {
+            System.out.print("Enter operator (+ - * /): ");
+            operator = scan.next().charAt(0);
+        }while(operator != '+' && operator != '-' && operator != '*' && operator != '/');
 
-    System.out.println("Enter second number: ");
-    double second = scan.nextDouble();
+        System.out.print("Enter second number: ");
+        double second = scan.nextDouble();
 
-    if (operator == '/' && second == 0){
-        System.out.println("Deviding by 0 is impossible");
-    }
+        if (operator == '/' && second == 0){
+            System.out.println("Dividing by 0 is impossible");
+        }
 
-    double result;
+        double result = 0;
 
-    switch (operator){
-        case ('+'):
-            result = first + second;
-            break;
-        case ('-'):
-            result = first - second;
-            break;
-        case ('*'):
-            result = first * second;
-            break;
-        case ('/'):
-            result = first / second;
-            break;
-    }
+        switch (operator){
+            case ('+'):
+                result = first + second;
+                break;
+            case ('-'):
+                result = first - second;
+                break;
+            case ('*'):
+                result = first * second;
+                break;
+            case ('/'):
+                result = first / second;
+                break;
+        }
+        System.out.println("Result: " + result);
 
+        System.out.print("Would you like to continue? (yes/no) : ");
+        continueCalculation = scan.next();
+
+    }while(!continueCalculation.equalsIgnoreCase("no"));
 }
